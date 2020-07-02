@@ -1,0 +1,15 @@
+/** dialog的textarea */
+.el-textarea .el-textarea__inner {
+    resize: none;
+    width: 80%;
+    margin: 0 auto;
+    padding: 0;
+    height: 60px;
+}
+.el-textarea .el-input__count {
+  bottom: 5px;
+  right: 32px;
+}
+.el-dialog {
+  width: 40%;
+}
