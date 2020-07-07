@@ -10,8 +10,12 @@
   font-size: 16px;
 }
 /* 内容 */
-.ck-content > p{
-	padding: 0.3rem 0.8rem;
+.ck-content > p {
+  display: block;
+  margin-block-start: 1em;
+  margin-block-end: 1em;
+  margin-inline-start: 0px;
+  margin-inline-end: 0px;
 }
 
 /** 调整图片  */
@@ -24,4 +28,68 @@
 }
 .ck-read-only {
   height: inherit;
+}
+/** 加粗 */
+strong {
+  font-weight: bold;
+}
+/** 标题栏 */
+h2 {
+  display: block;
+  font-size: 1.5em;
+  margin-block-start: 0.83em;
+  margin-block-end: 0.83em;
+  margin-inline-start: 0px;
+  margin-inline-end: 0px;
+  font-weight: bold;
+  padding: 0.1rem 0.5rem;
+}
+h3 {
+  display: block;
+  font-size: 1.17em;
+  margin-block-start: 1em;
+  margin-block-end: 1em;
+  margin-inline-start: 0px;
+  margin-inline-end: 0px;
+  font-weight: bold;
+  padding: 0.1rem 0.5rem;
+}
+h4 {
+  display: block;
+  margin-block-start: 1.33em;
+  margin-block-end: 1.33em;
+  margin-inline-start: 0px;
+  margin-inline-end: 0px;
+  font-weight: bold;
+  padding: 0.1rem 0.5rem;
+}
+/** 针对有序无序标签进行优化，因为reset.css全部覆盖，需要重置 */
+ol {
+  display: block;
+  list-style-type: decimal;
+  margin-block-start: 1em;
+  margin-block-end: 1em;
+  margin-inline-start: 0px;
+  margin-inline-end: 0px;
+  padding-inline-start: 40px;
+  list-style: decimal;
+}
+ol > li {
+  display: list-item;
+  list-style: decimal;
+  text-align: -webkit-match-parent;
+}
+ul > li {
+  display: list-item;
+  list-style-type: disc;
+  text-align: -webkit-match-parent;
+}
+ul, menu, dir {
+  display: block;
+  list-style-type: disc;
+  margin-block-start: 1em;
+  margin-block-end: 1em;
+  margin-inline-start: 0px;
+  margin-inline-end: 0px;
+  padding-inline-start: 40px;
 }

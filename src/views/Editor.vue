@@ -67,6 +67,7 @@ export default {
         extraPlugins: [upload.MyCustomUploadAdapterPlugin],
         fontSize: { options: [8, 10, 'default', 14, 16, 18, 20, 22, 24, 26, 28, 32] },
         fontFamily: { options: ['宋体', '仿宋', '微软雅黑', '黑体', '仿宋_GB2312', '楷体', '隶书', '幼圆'] },
+        // toolbar: { items: ['bold', 'italic', 'link', 'undo', 'redo'] },
         mediaEmbed: { 
 						providers: [
 					{

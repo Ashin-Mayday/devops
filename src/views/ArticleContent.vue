@@ -158,8 +158,11 @@ export default {
         // console.log(res)
         if (res.code === 200) {
           for (const index in res.msg) {
-            const updateTime = this.handleTime(res.msg[index].updateTime)
-            const publishTime = this.handleTime(res.msg[index].publishTime)
+            if (res.msg[index].updateTime) {
+              var updateTime = this.handleTime(res.msg[index].updateTime)
+            } else {
+              var publishTime = this.handleTime(res.msg[index].publishTime)
+            }
             this.content.title = res.msg[index].title
             this.content.author = res.msg[index].authorName
             this.content.updateTime = updateTime
