@@ -59,9 +59,9 @@ export default {
 /** 输入content */
 .m-content {
   width: 80%;
-  height: 600px;
   position: absolute;
   top: 100px;
+  bottom: 100px;
   left: 10%;
   min-width: 800px;
   /* border: 1px solid red; */

@@ -123,7 +123,7 @@ export default {
           .then(res => {
             if (res.code === 200) {
               this.$router.push('/')
-              localStorage.removeItem('ext')
+              sessionStorage.removeItem('ext')
             }
           })
       }).catch(() => {
@@ -182,7 +182,7 @@ export default {
     },
     // 获取权限判断是否需要展示添加页面
     getAuth () {
-      if (Base64.decode(localStorage.getItem('ext')) === 'devopsManager') {
+      if (Base64.decode(sessionStorage.getItem('ext')) === 'devopsManager') {
         this.auth = true
       }
     }

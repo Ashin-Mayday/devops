@@ -283,13 +283,6 @@ export default {
 .tagItem {
   margin-left: 2px;
 }
-/** 内容 */
-.g-content {
-  font-size: 16px;
-  position: absolute;
-  bottom: 0;
-  top: 120px;
-}
 /** 文章阅读 */
 .g-article {
   margin-left: 40px;

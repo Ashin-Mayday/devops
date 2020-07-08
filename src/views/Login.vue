@@ -101,7 +101,7 @@ export default {
         // 请求登陆模块
         this.$api.POST('./php/login/login.php', { account: this.account, token: Base64.encode(this.token), type: 'login' })
           .then( res => {
-            console.log(res)
+            // console.log(res)
             if (res.code == 200) {
               // 存储本地，是否记住密码
               if (this.check) {
@@ -110,10 +110,10 @@ export default {
               } else {
                 localStorage.removeItem('account')
                 localStorage.removeItem('token')
-                localStorage.removeItem('ext')
+                sessionStorage.removeItem('ext')
               }
               // 先用于当前登陆权限判断
-              localStorage.setItem('ext', Base64.encode('devopsManager'))
+              sessionStorage.setItem('ext', Base64.encode('devopsManager'))
               this.account = ''
               this.token = ''
               if (this.$route.query.redirect) {

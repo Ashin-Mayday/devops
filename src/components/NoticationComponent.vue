@@ -152,7 +152,6 @@ export default {
 <style lang="css" scoped>
 .g-content {
   margin-left: 40px;
-  width: 1000px;
 }
 /** 标签咧  */
 .m-tag {
@@ -179,14 +178,12 @@ export default {
 /** 包含 */
 .table {
   background: #fff;
-  height: 540px;
-  width: 980px;
 }
 /** table的前后左右加padding */
 .m-table {
   padding: 10px 10px;
-  /* border: 1px solid red; */
-  height: 500px;
+  width: 980px;
+  height: 480px;
 }
 /** 分页列表 */
 .block {

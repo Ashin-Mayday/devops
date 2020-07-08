@@ -76,7 +76,7 @@ router.beforeEach((to, from, next) => {
   // console.log(from)
   if (to.matched.some(record => record.meta.requireAuth)) {
     // 判断该路由是否需要登录权限
-    if (localStorage.getItem('ext')) {
+    if (sessionStorage.getItem('ext')) {
       //  通过封装好的读取，如果存在，name接下一步如果不存在，那跳转回登录页
       next() // 不要在next里面加"path:/",会陷入死循环
     } else {
