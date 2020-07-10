@@ -317,9 +317,11 @@ a:focus {
 /** 二维码图片 */
 .image > img {
   position: absolute;
-  z-index: 99;
+  z-index: 100;
   top: 42px;
   left: -30px;
+  display: inline-block;
+  height: 120px;
 }
 .a {
   cursor: pointer;

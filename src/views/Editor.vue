@@ -67,7 +67,6 @@ export default {
         extraPlugins: [upload.MyCustomUploadAdapterPlugin],
         fontSize: { options: [8, 10, 'default', 14, 16, 18, 20, 22, 24, 26, 28, 32] },
         fontFamily: { options: ['宋体', '仿宋', '微软雅黑', '黑体', '仿宋_GB2312', '楷体', '隶书', '幼圆'] },
-        // toolbar: { items: ['bold', 'italic', 'link', 'undo', 'redo'] },
         mediaEmbed: { 
 						providers: [
 					{
@@ -82,17 +81,23 @@ export default {
 							//获取媒体url
 							const input = match['input'];
 							return (
-								'<div style="position: relative; padding-bottom: 100%; height: 0; padding-bottom: 60%;">' +
-								'<video controls="" name="media" ' +
-								'style="position: absolute; width: 100%; height: 100%; top: 0; left: 0;" ' +
-								`<source src="${input}" type="video/mp4">`+
-								'frameborder="0" allowtransparency="true" allow="encrypted-media">' +
-								'</video>' +
-								'</div>'
-							);
+								'<div style="position: relative; padding-bottom: 100%; height: 0; padding-bottom: 70%;">' +
+    							`<iframe src="https://${input}" ` +
+    								'style="position: absolute; width: 100%; height: 100%; top: 0; left: 0;" ' +
+    								'frameborder="0" allowtransparency="true" allowfullscreen="true" allow="encrypted-media">' +
+    							'</iframe>' +
+    						'</div>'
+              );
 						}
 					}
-				]},
+        ]},
+        link: {
+          mode: 'automatic',
+          callback: url => url.startsWith( 'https://' ),
+          attributes: {
+            target: '_blank'
+          }
+        }
       },
       title: '', // 文章title
       id: this.$route.query.id // 编辑跳转的id

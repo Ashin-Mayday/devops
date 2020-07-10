@@ -34,7 +34,7 @@
           </div>
           <!-- 文章内容 -->
           <div class="g-content">
-            <ckeditor :editor="editor" v-model="content.content" @ready="onReady"></ckeditor>
+            <ckeditor :editor="editor" v-model="content.content" @ready="onReady" :config="editorConfig"></ckeditor>
           </div>
         </div>
       </div>
@@ -75,6 +75,32 @@ export default {
       id: this.$route.query.id, // 文章id
       topArticleOptions: [], // 前五文章列表
       editor: DecoupledEditor,
+      editorConfig: {
+        mediaEmbed: { 
+						providers: [
+					{
+						name: 'myprovider',
+						url: [
+							/^netease.*\.im.*\/quickhtml\/(\w+)/,
+							/^yx-web-nosdn\.netease.*/,
+							/^vod\.126\.net*/,
+							/.*\.mp4\.*/
+						],
+						html: match => {
+							//获取媒体url
+							const input = match['input'];
+							return (
+								'<div style="position: relative; padding-bottom: 100%; height: 0; padding-bottom: 70%;">' +
+    								`<iframe src="https://${input}" ` +
+    									'style="position: absolute; width: 100%; height: 100%; top: 0; left: 0;" ' +
+    									'frameborder="0" allowtransparency="true" allowfullscreen="true" allow="encrypted-media allowfullscreen">' +
+    								'</iframe>' +
+    							'</div>'
+							);
+						}
+					}
+        ]},
+      },
       content: {
         title: '', // 标题
         author: '', // 作者
