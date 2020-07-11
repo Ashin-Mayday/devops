@@ -93,3 +93,6 @@ ul, menu, dir {
   margin-inline-end: 0px;
   padding-inline-start: 40px;
 }
+body, html {
+  font-family: sans-serif, Arial, Verdana, "Trebuchet MS", "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+}

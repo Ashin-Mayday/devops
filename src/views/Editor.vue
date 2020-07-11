@@ -65,8 +65,16 @@ export default {
       editorData: '请输入您的内容',
       editorConfig: {
         extraPlugins: [upload.MyCustomUploadAdapterPlugin],
-        fontSize: { options: [8, 10, 'default', 14, 16, 18, 20, 22, 24, 26, 28, 32] },
-        fontFamily: { options: ['宋体', '仿宋', '微软雅黑', '黑体', '仿宋_GB2312', '楷体', '隶书', '幼圆'] },
+        fontSize: { options: [8, 10, 'default', 14, 16, 18, 20, 22, 24] },
+        fontFamily: { options: ['default',
+        'Arial, Helvetica, sans-serif',
+        'Courier New, Courier, monospace',
+        'Georgia, serif',
+        'Lucida Sans Unicode, Lucida Grande, sans-serif',
+        'Tahoma, Geneva, sans-serif',
+        'Times New Roman, Times, serif',
+        'Trebuchet MS, Helvetica, sans-serif',
+        'Verdana, Geneva, sans-serif'] },
         mediaEmbed: { 
 						providers: [
 					{

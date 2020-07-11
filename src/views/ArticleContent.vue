@@ -93,7 +93,7 @@ export default {
 								'<div style="position: relative; padding-bottom: 100%; height: 0; padding-bottom: 70%;">' +
     								`<iframe src="https://${input}" ` +
     									'style="position: absolute; width: 100%; height: 100%; top: 0; left: 0;" ' +
-    									'frameborder="0" allowtransparency="true" allowfullscreen="true" allow="encrypted-media allowfullscreen">' +
+    									'frameborder="0" allowtransparency="true" allowfullscreen="true" allow="encrypted-media">' +
     								'</iframe>' +
     							'</div>'
 							);
