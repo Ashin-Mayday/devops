@@ -123,22 +123,46 @@ export default {
     },
     // 根据标签检索
     tagSearch (value) {
-      if (value) {
-        var params = {}
-        params = { order: 'DESC', postTag: value, status: 1 }
-        this.getPostArticle(params)
+      if (this.typeValue) {
+        if (value) {
+          var params = {}
+          params = { order: 'DESC', postTag: value, postType: this.typeValue }
+          this.getPostArticle(params)
+        } else {
+          var params = {}
+          params = { order: 'DESC', postTag: value }
+          this.getPostArticle(params)
+        }
       } else {
-        this.getArticleListByParams()
+        if (value) {
+          var params = {}
+          params = { order: 'DESC', postTag: value }
+          this.getPostArticle(params)
+        } else {
+          this.getArticleListByParams()
+        }
       }
     },
     // 根据分类检索
     typeSearch (value) {
-      if (value) {
-        var params = {}
-        params = { order: 'DESC', postType: value, status: 1 }
-        this.getPostArticle(params)
+      if (this.tagValue) {
+        if (value) {
+          var params = {}
+          params = { order: 'DESC', postType: value, postTag: this.tagValue }
+          this.getPostArticle(params)
+        } else {
+          var params = {}
+          params = { order: 'DESC', postTag: this.tagValue }
+          this.getPostArticle(params) 
+        }
       } else {
-        this.getArticleListByParams()
+        if (value) {
+          var params = {}
+          params = { order: 'DESC', postType: value }
+          this.getPostArticle(params)
+        } else {
+          this.getArticleListByParams()
+        }
       }
     },
     // 根据参数获取文章列表
@@ -160,7 +184,7 @@ export default {
     getPostArticle (params) {
       this.articleOptions = []
       this.$api.POST('./php/post/get_post_list.php', params).then(res => {
-        console.log(res)
+        // console.log(res)
         if (res.code === 200) {
           this.total = res.msg.allCounts
           for (const index in res.msg.list) {
