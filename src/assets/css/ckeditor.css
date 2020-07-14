@@ -19,13 +19,14 @@
 }
 
 /** 调整图片  */
-.image > img {
+.ck-widget > img {
   display: block;
   margin: 0 auto;
   max-width: 50%;
   min-width: 50px;
   padding: 0.3rem 0.8rem;
 }
+
 .ck-read-only {
   height: inherit;
 }
