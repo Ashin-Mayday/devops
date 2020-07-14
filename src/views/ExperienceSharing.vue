@@ -186,7 +186,7 @@ export default {
       this.isActive = index
       var params = {}
       if (index === 0) {
-        params = { order: 'DESC', orderBy: 'updateTime', status: 1 }
+        params = { order: 'DESC', status: 1 }
       } else if (index === 1) {
         params = { order: 'DESC', orderBy: 'visitNum', status: 1 }
       }
@@ -210,13 +210,19 @@ export default {
         if (res.code === 200) {
           this.total = res.msg.allCounts
           for (const index in res.msg.list) {
+            var time
+            if (res.msg.list[index].updateTime) {
+              time = res.msg.list[index].updateTime
+            } else {
+              time = res.msg.list[index].publishTime
+            }
             const options = {
               id: res.msg.list[index].id,
               title: res.msg.list[index].title,
               postTag: res.msg.list[index].postTag,
               postType: res.msg.list[index].postType,
               visitNum: res.msg.list[index].visitNum,
-              updateTime: res.msg.list[index].updateTime
+              updateTime: time
             }
             this.articleOptions.push(options)
           }

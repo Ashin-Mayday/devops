@@ -143,7 +143,7 @@ export default {
     },
     // 根据参数获取文章列表
     getArticleListByParams () {
-      var params = { order: 'DESC', orderBy: 'updateTime' }
+      var params = { order: 'DESC'}
       this.getPostArticle(params)
     },
     // 根据关键字查询
@@ -160,17 +160,23 @@ export default {
     getPostArticle (params) {
       this.articleOptions = []
       this.$api.POST('./php/post/get_post_list.php', params).then(res => {
-        // console.log(res)
+        console.log(res)
         if (res.code === 200) {
           this.total = res.msg.allCounts
           for (const index in res.msg.list) {
+            var time
+            if (res.msg.list[index].updateTime) {
+              time = res.msg.list[index].updateTime
+            } else {
+              time = res.msg.list[index].publishTime
+            }
             const options = {
               id: res.msg.list[index].id,
               title: res.msg.list[index].title,
               postTag: res.msg.list[index].postTag, // 因为入库是JSON String的，需做一层转换
               postType: res.msg.list[index].postType,
               visitNum: res.msg.list[index].visitNum,
-              updateTime: res.msg.list[index].updateTime,
+              updateTime: time,
               deleteTime: res.msg.list[index].deleteTime
             }
             this.articleOptions.push(options)
