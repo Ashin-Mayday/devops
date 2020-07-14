@@ -164,19 +164,16 @@ export default {
     },
     // 根据标签检索
     tagSearch (value) {
+      var params = {}
       if (this.typeValue) {
         if (value) {
-          var params = {}
           params = { order: 'DESC', postTag: value, postType: this.typeValue, status: 1 }
-          this.getPostArticle(params)
         } else {
-          var params = {}
           params = { order: 'DESC', postType: this.typeValue, status: 1 }
-          this.getPostArticle(params)
         }
+        this.getPostArticle(params)
       } else {
         if (value) {
-          var params = {}
           params = { order: 'DESC', postTag: value, status: 1 }
           this.getPostArticle(params)
         } else {
@@ -186,19 +183,16 @@ export default {
     },
     // 根据分类检索
     typeSearch (value) {
+      var params = {}
       if (this.tagValue) {
         if (value) {
-          var params = {}
           params = { order: 'DESC', postType: value, postTag: this.tagValue, status: 1 }
-          this.getPostArticle(params)
         } else {
-          var params = {}
           params = { order: 'DESC', postTag: this.tagValue, status: 1 }
-          this.getPostArticle(params) 
         }
+        this.getPostArticle(params) 
       } else {
         if (value) {
-          var params = {}
           params = { order: 'DESC', postType: value, status: 1 }
           this.getPostArticle(params)
         } else {

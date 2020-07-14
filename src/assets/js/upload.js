@@ -35,7 +35,7 @@ class MyUploadAdapter {
       onerror: onError
     })
     function onConnect () {
-      console.log('连接成功')
+      // console.log('连接成功')
       nim.previewFile({
         type: 'image',
         dataURL: fileBase,
@@ -49,7 +49,7 @@ class MyUploadAdapter {
           console.log('上传image' + (!error ? '成功' : '失败'))
           // show file to the user
           if (!error) {
-            console.log(file)
+            // console.log(file)
             resolve({
               default: file.url
             })
@@ -60,13 +60,13 @@ class MyUploadAdapter {
     }
     function onWillReconnect (obj) {
       // 此时说明 SDK 已经断开连接, 请开发者在界面上提示用户连接已断开, 而且正在重新建立连接
-      console.log('即将重连')
-      console.log(obj.retryCount)
-      console.log(obj.duration)
+      // console.log('即将重连')
+      // console.log(obj.retryCount)
+      // console.log(obj.duration)
     }
     function onDisconnect (error) {
       // 此时说明 SDK 处于断开状态, 开发者此时应该根据错误码提示相应的错误信息, 并且跳转到登录页面
-      console.log('丢失连接')
+      // console.log('丢失连接')
       console.log(error)
       if (error) {
         switch (error.code) {
