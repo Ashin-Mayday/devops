@@ -11,6 +11,7 @@
           </li>
           <li><a>开发者工具箱</a></li>
           <li><a class="a" @click="handleLinkview()">常用链接</a></li>
+          <!-- 20200708新增-->
           <li><a class="a" @click="handleExp()">经验分享</a></li>
           <li>
             <a href="https://faq.yunxin.163.com/kb/main/#/" target="_blank">知识库</a>
@@ -22,14 +23,15 @@
           <div>欢迎您：<span class="g-admin">管理员</span><span class="logout" @click="logout()">登出</span></div>
       </div>
     </div>
-    <div class="g-bottom">
+    <!-- 20200707去掉底-->
+    <!-- <div class="g-bottom">
       <div class="left bottom">
         <img :src="neteaseLogo"/>
       </div>
       <div class="right bottom">
         <img :src="yxLogo"/>
       </div>
-    </div>
+    </div> -->
   </div>
 </template>
 <script>
@@ -39,8 +41,6 @@ export default {
   data () {
     return {
       logo: require('../assets/image/logo.png'),
-      neteaseLogo: require('../assets/image/neteaseLogo.png'),
-      yxLogo: require('../assets/image/yxLogo.png'),
       name: '',
       auth: false // 权限
     }
@@ -96,7 +96,7 @@ export default {
 /** 导航栏 */
 .g-nav {
   color: #fff;
-  font-size: 20px;
+  font-size: 16px;
   line-height: 60px;
   position: fixed;
   background: rgba(28, 43, 65, 1);
@@ -107,10 +107,8 @@ export default {
 }
 /** 内置标签栏 */
 .bar {
-  /* border: 1px solid pink; */
-  margin: 0 auto;
-  max-width: 1224px;
   min-width: 800px;
+  margin-left: 7%;
 }
 /** 取消ul的标签及横向排列 */
 ul {
@@ -143,37 +141,6 @@ a:focus {
 /** 信息间隔 */
 .g-admin {
   margin-right: 60px;
-}
-
-/** 底部栏 */
-.g-bottom {
-  position: fixed;
-  left: 0;
-  bottom: 0;
-  display: flex;
-  background: rgba(28, 43, 65, 1);
-  width: 100%;
-  line-height: 60px;
-  z-index: 90;
-}
-/** 公共栏 */
-.bottom {
-  width: 50%;
-}
-/** 图片设置 */
-.bottom > img {
-  display: inline-block;
-  height: 30px;
-}
-/** 左边的logo */
-.left {
-  text-align: right;
-  border-right: 1px solid rgba(187,187,187,1);
-  padding-right: 1%;
-}
-/** 右边的logo */
-.right {
-  padding-left: 1%;
 }
 .logout:hover {
   cursor: pointer;

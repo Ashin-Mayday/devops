@@ -163,27 +163,33 @@ export default {
 /** 新增按钮 */
 .increase {
   text-align: center;
-  border-radius: 5px;
-  background: #000;
+  border-radius: 4px;
+  border: 1px solid rgba(28, 43, 65, 1);
+  background: #1c2b41;
   color: #fff;
-  font-weight: bold;
-  width: 60px;
-  line-height: 40px;
-  margin-left: 900px;
+  width: 120px;
+  line-height: 30px;
+}
+.increase:hover {
+  background: #1a9aef;
+  cursor: pointer;
 }
 .url {
   width: 80%;
   margin: 5% 0 0 10%;
 }
 /** 包含 */
+/**20200708修改*/
 .table {
   background: #fff;
+  height: 80%;
+  width: 980px;
 }
 /** table的前后左右加padding */
 .m-table {
   padding: 10px 10px;
-  width: 980px;
-  height: 480px;
+  height: 90%;
+  margin-left: 20px;
 }
 /** 分页列表 */
 .block {

@@ -243,7 +243,8 @@ a:focus {
   display: flex;
   justify-content: flex-start;
   flex-direction: row;
-  align-items: baseline;
+  /** 20200704 修改及新增 */
+  margin-bottom: 2%;
 }
 
 /** 图标 */
@@ -260,8 +261,7 @@ a:focus {
   line-height: 20px;
   font-size: 16px;
   margin-right: 18%;
-  vertical-align:middle;
-  margin-bottom: 2%;
+  vertical-align: middle;
 }
 /** 分割线 */
 hr {

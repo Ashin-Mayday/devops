@@ -57,14 +57,14 @@ export default {
   color: #fff;
 }
 /** 输入content */
+/** 20200708修改 */
 .m-content {
   width: 80%;
+  height: 90%;
   position: absolute;
   top: 100px;
-  bottom: 100px;
   left: 10%;
   min-width: 800px;
-  /* border: 1px solid red; */
   display: flex;
   justify-content: center;
 }
@@ -87,6 +87,8 @@ export default {
   padding-left: 10px;
   margin-bottom: 10px;
   width: 160px;
+  /** 20200708新增 */
+  cursor: pointer;
 }
 .g-menu :not(:first-child) {
   border: 1px solid rgb(28, 43, 65);
@@ -95,5 +97,10 @@ export default {
   line-height: 40px;
   width: 160px;
   margin: 0 auto;
+  /** 20200708新增 */
+  cursor: pointer;
+}
+.el-input__suffix {
+  height: 75%;
 }
 </style>

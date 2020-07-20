@@ -18,9 +18,12 @@
             </el-option>
           </el-select>
       </div>
+      <div class="part_line">
+
+      </div>
       <div>
         <span>关键字：</span>
-          <input v-model="keywords" placeholder="请输入关键字" class="key"/>
+        <input v-model="keywords" placeholder="请输入关键字" class="key"/>
       </div>
       <div class="search" @click="getArticleListByKeywords()">搜索</div>
       <div class="newArticle" @click="addArticle()">新文章</div>
@@ -28,7 +31,7 @@
           <!-- 表格 -->
           <div class="table">
             <div class="m-table">
-                <el-table :data="articleOptions.slice((currentPage-1) * pagesize,currentPage * pagesize)" height="100%">
+                <el-table :data="articleOptions.slice((currentPage-1) * pagesize,currentPage * pagesize)" height="100%" @row-click="openArticle">
                   <el-table-column prop="title" label="主题" width="180"></el-table-column>
                   <el-table-column prop="tag" label="标签" width="240">
                     <template slot-scope="scope">
@@ -254,6 +257,12 @@ export default {
     // 添加新文章
     addArticle () {
       this.$router.push('../editor')
+    },
+    // 监听表格每行，进行业务跳转查看
+    // 20200714新增
+    openArticle (row) {
+      // console.log(row)
+      this.$router.push({ path: '/articlecontent', query: { id: row.id } })
     }
   }
 }
@@ -261,6 +270,13 @@ export default {
 <style lang="css" scoped>
 .g-content {
   margin-left: 40px;
+  width: 1000px;
+}
+.part_line {
+  width: 1px;
+  height: 20px;
+  border-left: 1px solid;
+  border-color: #1c2b41;
 }
 /** 标签咧  */
 .m-tag {
@@ -270,7 +286,6 @@ export default {
   line-height: 40px;
   justify-content: center;
   min-width: 600px;
-  width: 980px;
   padding: 10px 10px;
   align-items: center;
 }
@@ -305,25 +320,36 @@ input::-webkit-input-placeholder {
   border-radius: 4px;
   cursor: pointer;
 }
+.newArticle:hover {
+  background: #0888ff;
+}
 /** 发布按钮 */
+/**20200708调整*/
 .search {
   text-align: center;
   border-radius: 4px;
-  background: #000;
+  border: 1px solid rgba(28, 43, 65, 1);
+  background: #1c2b41;
   color: #fff;
   font-weight: bold;
-  width: 100px;
+  width: 120px;
   line-height: 30px;
+}
+.search:hover {
+  cursor: pointer;
+  background: #0888ff;
 }
 /** 包含 */
 .table {
   background: #fff;
+  height: 80%;
+  width: 980px;
 }
 /** table的前后左右加padding */
 .m-table {
   padding: 10px 10px;
-  width: 980px;
-  height: 480px;
+  height: 90%;
+  margin-left: 20px;
 }
 /** 分页列表 */
 .block {
@@ -342,4 +368,10 @@ input::-webkit-input-placeholder {
 .tagItem {
   margin-left: 10px;
 }
+</style>
+<style>
+.article-manage-title:hover{
+    color: #1a9aef;
+    cursor: pointer;
+  }
 </style>

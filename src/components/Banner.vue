@@ -3,14 +3,16 @@
     <div class="g-nav">
       <div class="bar">
         <div>
+          <div id="homeClickDiv" style="height: 66px;width: 105px;position: absolute;cursor: pointer" onclick="window.open('https://yunxin.163.com/')"></div>
+          <div id="commClickDiv" style="height: 66px;width: 105px;position: absolute;margin-left: 106px;cursor: pointer" onclick="window.location.href = '../linkview#/linkview'"></div>
           <a href="https://yunxin.163.com" target="_blank" class="logo">
             <img :src="logo"/>
           </a>
         </div>
-        <div><a>开发者工具箱</a></div>
+        <!-- <div><a>开发者工具箱</a></div> -->
         <div><a class="a" @click="handleLinkview()">常用链接</a></div>
         <div><a class="a" @click="handleExp()">经验分享</a></div>
-        <div><a href="https://faq.yunxin.163.com/kb/main/#/" target="_blank">知识库</a></div>
+        <div><a class="a" href="https://faq.yunxin.163.com/kb/main/#/" target="_blank">知识库</a></div>
         <div><a class="a" @click="handleManager()">管理后台</a></div>
         <div class="g-info" v-if="auth">
           <div>欢迎您：<span class="g-admin">管理员</span><span class="logout" @click="logout()">登出</span></div>
@@ -20,7 +22,9 @@
         <span>开发者工具箱</span>
         <span>{{ name }}</span>
       </div>
+      <!--  20200704改动 为了将中间4个导航栏居中，关注我们靠右。 新增 <div class="share-info">，将关注我们单独拎出来-->
       <div class="g-tools">
+        <div class="tools-link">
         <div class="tools" @click="openUrl(0)">
           <div class="svg">
             <svg xmlns="http://www.w3.org/2000/svg" class="svg-icon an-icon ant-read" viewBox="64 64 896 896" width="32" height="32" style="fill: rgb(255, 255, 255);"><path d="M928 161H699.2c-49.1 0-97.1 14.1-138.4 40.7L512 233l-48.8-31.3A255.2 255.2 0 0 0 324.8 161H96c-17.7 0-32 14.3-32 32v568c0 17.7 14.3 32 32 32h228.8c49.1 0 97.1 14.1 138.4 40.7l44.4 28.6c1.3.8 2.8 1.3 4.3 1.3s3-.4 4.3-1.3l44.4-28.6C602 807.1 650.1 793 699.2 793H928c17.7 0 32-14.3 32-32V193c0-17.7-14.3-32-32-32zM324.8 721H136V233h188.8c35.4 0 69.8 10.1 99.5 29.2l48.8 31.3 6.9 4.5v462c-47.6-25.6-100.8-39-155.2-39zm563.2 0H699.2c-54.4 0-107.6 13.4-155.2 39V298l6.9-4.5 48.8-31.3c29.7-19.1 64.1-29.2 99.5-29.2H888v488zM396.9 361H211.1c-3.9 0-7.1 3.4-7.1 7.5v45c0 4.1 3.2 7.5 7.1 7.5h185.7c3.9 0 7.1-3.4 7.1-7.5v-45c.1-4.1-3.1-7.5-7-7.5zm223.1 7.5v45c0 4.1 3.2 7.5 7.1 7.5h185.7c3.9 0 7.1-3.4 7.1-7.5v-45c0-4.1-3.2-7.5-7.1-7.5H627.1c-3.9 0-7.1 3.4-7.1 7.5zM396.9 501H211.1c-3.9 0-7.1 3.4-7.1 7.5v45c0 4.1 3.2 7.5 7.1 7.5h185.7c3.9 0 7.1-3.4 7.1-7.5v-45c.1-4.1-3.1-7.5-7-7.5zm416 0H627.1c-3.9 0-7.1 3.4-7.1 7.5v45c0 4.1 3.2 7.5 7.1 7.5h185.7c3.9 0 7.1-3.4 7.1-7.5v-45c.1-4.1-3.1-7.5-7-7.5z"></path>
@@ -60,21 +64,22 @@
             <div>合作共创</div>
             <div>加入云信合作伙伴计划</div>
           </div>
+          </div>
         </div>
-        <div class="tools info">
+        <div class="share-info">
           <div class="tip">关注我们：</div>
           <div class="svg">
-            <div class="image" @mouseenter="handleImage('wechatIf', true)" @mouseleave="handleImage('wechatIf', false)">
+            <div class="imageFollow" @mouseenter="handleImage('wechatIf', true)" @mouseleave="handleImage('wechatIf', false)">
               <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" class="svg-icon fa-svg-icon svg-fa-weixin" width="22" height="22" viewBox="0 0 576 512" style="fill: rgb(255, 255, 255);"><path d="M385.2 167.6c6.4 0 12.6.3 18.8 1.1C387.4 90.3 303.3 32 207.7 32 100.5 32 13 104.8 13 197.4c0 53.4 29.3 97.5 77.9 131.6l-19.3 58.6 68-34.1c24.4 4.8 43.8 9.7 68.2 9.7 6.2 0 12.1-.3 18.3-.8-4-12.9-6.2-26.6-6.2-40.8-.1-84.9 72.9-154 165.3-154zm-104.5-52.9c14.5 0 24.2 9.7 24.2 24.4 0 14.5-9.7 24.2-24.2 24.2-14.8 0-29.3-9.7-29.3-24.2.1-14.7 14.6-24.4 29.3-24.4zm-136.4 48.6c-14.5 0-29.3-9.7-29.3-24.2 0-14.8 14.8-24.4 29.3-24.4 14.8 0 24.4 9.7 24.4 24.4 0 14.6-9.6 24.2-24.4 24.2zM563 319.4c0-77.9-77.9-141.3-165.4-141.3-92.7 0-165.4 63.4-165.4 141.3S305 460.7 397.6 460.7c19.3 0 38.9-5.1 58.6-9.9l53.4 29.3-14.8-48.6C534 402.1 563 363.2 563 319.4zm-219.1-24.5c-9.7 0-19.3-9.7-19.3-19.6 0-9.7 9.7-19.3 19.3-19.3 14.8 0 24.4 9.7 24.4 19.3 0 10-9.7 19.6-24.4 19.6zm107.1 0c-9.7 0-19.3-9.7-19.3-19.6 0-9.7 9.7-19.3 19.3-19.3 14.5 0 24.4 9.7 24.4 19.3.1 10-9.9 19.6-24.4 19.6z"></path>
               </svg>
               <img class="svg-image" v-if="wechatIf" :src="wechat"/>
             </div>
-            <div class="image" @mouseenter="handleImage('weiboIf', true)" @mouseleave="handleImage('weiboIf', false)">
+            <div class="imageFollow" @mouseenter="handleImage('weiboIf', true)" @mouseleave="handleImage('weiboIf', false)">
               <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" class="svg-icon fa-svg-icon svg-fa-weibo" width="22" height="22" viewBox="0 0 512 512" style="fill: rgb(255, 255, 255);"><path d="M407 177.6c7.6-24-13.4-46.8-37.4-41.7-22 4.8-28.8-28.1-7.1-32.8 50.1-10.9 92.3 37.1 76.5 84.8-6.8 21.2-38.8 10.8-32-10.3zM214.8 446.7C108.5 446.7 0 395.3 0 310.4c0-44.3 28-95.4 76.3-143.7C176 67 279.5 65.8 249.9 161c-4 13.1 12.3 5.7 12.3 6 79.5-33.6 140.5-16.8 114 51.4-3.7 9.4 1.1 10.9 8.3 13.1 135.7 42.3 34.8 215.2-169.7 215.2zm143.7-146.3c-5.4-55.7-78.5-94-163.4-85.7-84.8 8.6-148.8 60.3-143.4 116s78.5 94 163.4 85.7c84.8-8.6 148.8-60.3 143.4-116zM347.9 35.1c-25.9 5.6-16.8 43.7 8.3 38.3 72.3-15.2 134.8 52.8 111.7 124-7.4 24.2 29.1 37 37.4 12 31.9-99.8-55.1-195.9-157.4-174.3zm-78.5 311c-17.1 38.8-66.8 60-109.1 46.3-40.8-13.1-58-53.4-40.3-89.7 17.7-35.4 63.1-55.4 103.4-45.1 42 10.8 63.1 50.2 46 88.5zm-86.3-30c-12.9-5.4-30 .3-38 12.9-8.3 12.9-4.3 28 8.6 34 13.1 6 30.8.3 39.1-12.9 8-13.1 3.7-28.3-9.7-34zm32.6-13.4c-5.1-1.7-11.4.6-14.3 5.4-2.9 5.1-1.4 10.6 3.7 12.9 5.1 2 11.7-.3 14.6-5.4 2.8-5.2 1.1-10.9-4-12.9z"></path>
               </svg>
               <img class="svg-image" v-if="weiboIf" :src="weibo"/>
             </div>
-            <div class="image" @mouseenter="handleImage('githubIf', true)" @mouseleave="handleImage('githubIf', false)">
+            <div class="imageFollow" @mouseenter="handleImage('githubIf', true)" @mouseleave="handleImage('githubIf', false)">
               <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" class="svg-icon fa-svg-icon svg-fa-github" width="22" height="22" viewBox="0 0 496 512" style="fill: rgb(255, 255, 255);"><path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6zm-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3zm44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9zM244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8zM97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1zm-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7zm32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1zm-11.4-14.7c-1.6 1-1.6 3.6 0 5.9 1.6 2.3 4.3 3.3 5.6 2.3 1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2z"></path>
               </svg>
               <img class="svg-image" v-if="githubIf" :src="github"/>
@@ -90,7 +95,8 @@ export default {
   name: 'banner',
   data () {
     return {
-      logo: require('../assets/image/logo.png'),
+      // 2020 0707 调整logo
+      logo: require('../assets/image/logo_new.png'),
       background: require('../assets/image/background.jpg'),
       wechat: require('../assets/image/wechat.jpg'),
       weibo: require('../assets/image/weibo.jpg'),
@@ -181,7 +187,7 @@ export default {
   width: 100%;
   color: #fff;
   font-size: 20px;
-  height: 25%;
+  height: 220px;
   background-color: #0e0e0e;
   background-image: url('../assets/image/banner.png');
   background-repeat: no-repeat;
@@ -197,7 +203,7 @@ export default {
   align-items: center;
 }
 .bar > div {
-  margin-right: 17px;
+  margin-right:50px;
   font-size: 20px;
 }
 .bar > div:not(:first-child) {
@@ -208,7 +214,8 @@ export default {
 .logo > img {
   display: inline-block;
   height: 26px;
-  width: 144px;
+  width: 210px;
+  margin-bottom: 3%;
 }
 /** 针对a标签取消限制 */
 a:link {
@@ -223,6 +230,7 @@ a:focus {
   line-height: 30px;
   position: absolute;
   left: 15%;
+  top: 40%;
 }
 .g-title > span:first-child {
   min-width: 600px;
@@ -235,7 +243,6 @@ a:focus {
 }
 .g-title > span:last-child {
   margin-left: 5px;
-  font-family: FZLanTingHei;
   font-weight: 700;
   font-size: 18px;
   color: rgb(200, 195, 195);
@@ -248,20 +255,24 @@ a:focus {
   background: rgba(255, 255, 255, 0.16);
   min-width: 800px;
   font-size: 14px;
-  line-height: 22px;
-  height: 56px;
+  line-height: 24px;
+  height: 30%;
   display: flex;
   align-items: center;
+  justify-content : center;
 }
-.g-tools > div:first-child {
-  margin-left: 200px;
+.tools-link {
+  justify-content : center;
 }
 /** tools公共模块 */
 .tools {
   width: 180px;
   display: inline-block;
-  margin-right: 50px;
+  margin-right: 70px;
   cursor: pointer;
+}
+.tools:hover {
+  background: rgba(255,255,255,0.1);
 }
 .svg {
   display: inline-block;
@@ -279,10 +290,14 @@ a:focus {
   font-size: 10px;
 }
 /** 分享内容排版 */
-.info {
+.share-info {
   display: flex;
   align-items: center;
-  width: 200px;
+  position: absolute;
+  font-size: 14px;
+  line-height: 22px;
+  height: 30%;
+  margin-left: 85%;
 }
 .tip {
   display: inline-block;
@@ -291,23 +306,28 @@ a:focus {
 .svg > div {
   display: inline-block;
 }
-.image {
+.imageFollow {
   width: 22px;
   height: 22px;
   margin-left: 12px;
   position: relative;
 }
 /** 二维码图片 */
-.svg-image {
+.imageFollow > img {
+  padding: 5px;
   position: absolute;
-  z-index: 100;
+  z-index: 99;
   top: 42px;
-  left: -30px;
-  display: inline-block;
-  height: 120px;
+  left: -90px;
+  border: 1px solid #EBEEF5;
+  box-shadow: 0 0 5px hsla( 0, 0%, 0%, .1 );
+  margin-top: 10px;
 }
 .a {
   cursor: pointer;
+}
+.a:hover {
+    color: #38A5EE;
 }
 /** 登录信息 */
 .g-info {

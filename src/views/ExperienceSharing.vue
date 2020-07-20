@@ -295,7 +295,8 @@ export default {
 .g-content {
   width: 80%;
   margin: 0 auto;
-  margin-top: 2%;
+  margin-top: 1.5%;
+  height: 65%;
 }
 .m-search {
   font-size: 16px;
@@ -346,17 +347,13 @@ export default {
 }
 /** 内容  */
 .m-content {
-  /* margin-top: 1%; */
   padding-top: 10px;
   display: flex;
-  /* border: 1px solid red; */
-  height: 460px;
+  height: 90%;
 }
 /** 表格 */
 .g-table {
   display: inline-block;
-  /* width: 1000px; */
-  /* border: 1px solid red; */
 }
 /** 表格标签 */
 .tagDiv {
@@ -376,21 +373,28 @@ export default {
   flex-direction: column;
   font-size: 14px;
   min-width: 240px;
-  width: 240px;
-  margin-left: 50px;
+  width: 20%;
+  margin-left: 5%;
 }
 /** 推荐阅读 */
 .g-recommend {
   display: inline-block;
   height: 200px;
-  /* border: 1px solid red; */
 }
 .recommend {
-  border-bottom: 1px solid #000;
+  border-bottom: 1px solid #1c2b41;
   line-height: 40px;
+  /** 20200707新增 */
+  font-weight: bold;
+  margin-left: 10px;
 }
 .g-link {
   margin-top: 15px;
+  margin-left: 10px;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  word-break: break-all;
 }
 .g-link  > a {
   margin-left: 8px;
@@ -398,7 +402,7 @@ export default {
 }
 /** 鼠标移动上去效果 */
 a:hover {
-  color: rgba(42, 107, 242, 1)
+  color: #38A5EE;
 }
 /** 针对a标签取消限制 */
 a:link {
@@ -411,11 +415,35 @@ a:focus {
 /** 重要通知 */
 .g-notication {
   display: inline-block;
-  /* border: 1px solid red; */
+  margin-top: 20px;
 }
 /** 分页列表 */
 .block {
   width: inherit;
   text-align: center;
+}
+</style>
+<!--20200707新增-->
+<style>
+.el-table .cell {
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  word-break: break-all;
+}
+.col-title-style {
+  color: #1c2b41;
+  font-size: 15px;
+}
+.col-title-style:hover{
+  color: #38A5EE;
+  cursor: pointer;
+}
+.el-input__inner{
+  line-height: 30px;
+  height: 30px;
+}
+.el-input__icon{
+  line-height: 30px
 }
 </style>

@@ -2,11 +2,27 @@
   <div class="s-content">
     <HeadFoot/>
     <div class="m-content">
+      <div class="g-article">
+        <div class="g-recommend">
+          <div class="recommend">推荐阅读</div>
+            <div class="g-link" v-for="(article, num) in topArticleOptions" :key="num">
+              <svg xmlns="http://www.w3.org/2000/svg" class="svg-icon" viewBox="0 0 512 512" width="10" height="10" style="fill: rgba(42, 107, 242, 0.69);"><path d="M256 8C119 8 8 119 8 256s111 248 248 248 248-111 248-248S393 8 256 8z"></path></svg>
+              <a @click="openArticle(article)">[{{ typeOptions[article.postType - 1].label}}] {{ article.title }}</a>
+            </div>
+          </div>
+          <div class="g-notication">
+            <div class="recommend">重要通知</div>
+            <div class="g-link"  v-for="(annoItem,index) in annoOptions" :key="index" :value="annoItem">
+              <svg xmlns="http://www.w3.org/2000/svg" class="svg-icon" viewBox="0 0 512 512" width="10" height="10" style="fill: rgba(42, 107, 242, 0.69);"><path d="M256 8C119 8 8 119 8 256s111 248 248 248 248-111 248-248S393 8 256 8z"></path></svg>
+              <a :href="annoItem.url">[重要公告] {{ annoItem.content }}</a>
+            </div>
+          </div>
+      </div>
       <div class="g-container">
         <div class="m-container">
           <!-- 文章标题 -->
           <div class="g-tip">
-            <svg @click="goExper()" xmlns="http://www.w3.org/2000/svg" class="svg-icon" viewBox="0 0 24 24" width="20" height="20" style="fill: rgb(42, 107, 242);"><path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z"></path></svg>
+            <svg @click="goExper()" xmlns="http://www.w3.org/2000/svg" class="svg-icon_home" viewBox="0 0 24 24" width="20" height="20" style="fill: rgb(42, 107, 242);"><path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z"></path></svg>
             <div> > {{ content.title }}</div>
           </div>
           <div class="g-title">{{ content.title }}</div>
@@ -37,22 +53,6 @@
             <ckeditor :editor="editor" v-model="content.content" @ready="onReady" :config="editorConfig"></ckeditor>
           </div>
         </div>
-      </div>
-      <div class="g-article">
-        <div class="g-recommend">
-          <div class="recommend">推荐阅读</div>
-            <div class="g-link" v-for="(article, num) in topArticleOptions" :key="num">
-              <svg xmlns="http://www.w3.org/2000/svg" class="svg-icon" viewBox="0 0 512 512" width="10" height="10" style="fill: rgba(42, 107, 242, 0.69);"><path d="M256 8C119 8 8 119 8 256s111 248 248 248 248-111 248-248S393 8 256 8z"></path></svg>
-              <a @click="openArticle(article)">[{{ typeOptions[article.postType - 1].label}}] {{ article.title }}</a>
-            </div>
-          </div>
-          <div class="g-notication">
-            <div class="recommend">重要通知</div>
-            <div class="g-link"  v-for="(annoItem,index) in annoOptions" :key="index" :value="annoItem">
-              <svg xmlns="http://www.w3.org/2000/svg" class="svg-icon" viewBox="0 0 512 512" width="10" height="10" style="fill: rgba(42, 107, 242, 0.69);"><path d="M256 8C119 8 8 119 8 256s111 248 248 248 248-111 248-248S393 8 256 8z"></path></svg>
-              <a :href="annoItem.url">[重要公告] {{ annoItem.content }}</a>
-            </div>
-          </div>
       </div>
     </div>
   </div>
@@ -246,6 +246,9 @@ export default {
 }
 </script>
 <style lang="css" scoped>
+.svg-icon_home:hover{
+  cursor: pointer;
+}
 .s-content {
   background-color: #ebebeb;
   width: 100%;
@@ -253,18 +256,19 @@ export default {
 }
 /** 整个阅读的html */
 .g-container {
-  width: 40%;
+  width: 50%;
   background: #fff;
   position: absolute;
   top: 90px;
-  left: 20%;
-  bottom: 90px;
+  left: 10%;
+  bottom: 20px;
   overflow: auto;
   min-width: 600px;
 }
 /** 内容模块 */
 .m-container {
-  width: 90%;
+  /** 20200707修改 */
+  width: 95%;
   margin: 0 auto;
 }
 /** 内容模块最顶层tip模块 */
@@ -279,10 +283,13 @@ export default {
 }
 /** 内容模块title */
 .g-title {
-  font-size: 2.5vh;
+  /** 20200712修改 */
+  font-size: 3.0vh;
   font-weight: bold;
   text-align: center;
   margin-bottom: 10px;
+  margin-bottom: 20px;
+  margin-top: 20px;
 }
 /** 内容模块信息 */
 .g-info {
@@ -297,7 +304,6 @@ export default {
   width: 20px;
 }
 .g-info > div {
-  /* width: 70px; */
   padding-right: 20px;
   margin-left: 2px;
 }
@@ -308,6 +314,12 @@ export default {
 }
 .tagItem {
   margin-left: 2px;
+}
+/** 内容 */
+.g-content {
+  font-size: 16px;
+  bottom: 0;
+  top: 120px;
 }
 /** 文章阅读 */
 .g-article {
@@ -339,6 +351,10 @@ export default {
   margin-top: 15px;
   font-size: 12px;
   padding-left: 10px;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  word-break: break-all;
 }
 .g-link  > a {
   margin-left: 8px;
@@ -359,7 +375,6 @@ a:focus {
 /** 重要通知 */
 .g-notication {
   display: inline-block;
-  /* border: 1px solid red; */
   width: 90%;
   margin: 0 auto;
 }
@@ -367,4 +382,10 @@ a:focus {
 .tagDiv {
   display: inline-block;
 }
+</style>
+<style>
+.ck.ck-editor__editable.ck-read-only .ck-widget.ck-widget_with-selection-handle .ck-widget__selection-handle, .ck.ck-editor__editable.ck-read-only .ck-widget.ck-widget_with-selection-handle .ck-widget__selection-handle:hover{
+  visibility: hidden;
+}
+
 </style>

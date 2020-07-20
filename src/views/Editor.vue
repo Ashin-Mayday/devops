@@ -327,3 +327,10 @@ input::-webkit-input-placeholder {
   cursor: pointer;
 }
 </style>
+<style>
+.ck.ck-toolbar{
+  position: sticky;
+  float: inherit;
+  top: 0px;
+}
+</style>
