@@ -3,7 +3,7 @@
     <!-- 标签 -->
     <div class="m-tag">
       <div>
-        <span>标签一：</span>
+        <span>标签：</span>
         <el-select v-model="tagValue" clearable placeholder="请选择" size="mini" @change="tagSearch(tagValue)" class="select">
           <el-option v-for="item in tagOptions" :key="item.value" :label="item.label"
               :value="item.value">
@@ -18,9 +18,7 @@
             </el-option>
           </el-select>
       </div>
-      <div class="part_line">
-
-      </div>
+      <div class="part_line"></div>
       <div>
         <span>关键字：</span>
         <input v-model="keywords" placeholder="请输入关键字" class="key"/>
@@ -32,7 +30,7 @@
           <div class="table">
             <div class="m-table">
                 <el-table :data="articleOptions.slice((currentPage-1) * pagesize,currentPage * pagesize)" height="100%" @row-click="openArticle">
-                  <el-table-column prop="title" label="主题" width="180"></el-table-column>
+                  <el-table-column prop="title" label="主题" width="260" class-name="article-manage-title"></el-table-column>
                   <el-table-column prop="tag" label="标签" width="240">
                     <template slot-scope="scope">
                     <div v-for="(tagItem,index) in scope.row.postTag.split(',')" :key="index" class="tagDiv">
@@ -261,7 +259,6 @@ export default {
     // 监听表格每行，进行业务跳转查看
     // 20200714新增
     openArticle (row) {
-      // console.log(row)
       this.$router.push({ path: '/articlecontent', query: { id: row.id } })
     }
   }
@@ -272,6 +269,7 @@ export default {
   margin-left: 40px;
   width: 1000px;
 }
+/** 分割线 */
 .part_line {
   width: 1px;
   height: 20px;
@@ -285,7 +283,7 @@ export default {
   margin: 0 auto;
   line-height: 40px;
   justify-content: center;
-  min-width: 600px;
+  min-width: 1000px;
   padding: 10px 10px;
   align-items: center;
 }
@@ -370,8 +368,7 @@ input::-webkit-input-placeholder {
 }
 </style>
 <style>
-.article-manage-title:hover{
-    color: #1a9aef;
-    cursor: pointer;
-  }
+.article-manage-title:hover {
+  cursor: pointer;
+}
 </style>

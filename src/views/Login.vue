@@ -196,7 +196,6 @@ a:focus {
   font-size: 18px;
   color: rgb(200, 195, 195);
 }
-
 /** 使用绝对定位定位背景图片 */
 .s-bg {
   display: inline-block;
@@ -207,7 +206,6 @@ a:focus {
   left: 50%;
   transform: translate(-50%,-50%);
 }
-
 /** 表单form */
 .m-form {
   width: 381px;
@@ -231,7 +229,6 @@ a:focus {
   left: 60%;
   top: 25%;
 }
-
 /** 账号信息模块 */
 .m-form-info {
   margin: 8% 0;
@@ -246,13 +243,11 @@ a:focus {
   /** 20200704 修改及新增 */
   margin-bottom: 2%;
 }
-
 /** 图标 */
 .info > span {
   display: inline-block;
   width: 40px;
 }
-
 /** 输入框 */
 .info > input {
   width: 250px;
@@ -274,7 +269,6 @@ hr {
   color: #fff;
   position: relative;
 }
-
 /** 登录按钮 */
 .m-form-submit {
   color:#fff;
@@ -331,7 +325,6 @@ label {
   -webkit-transform:rotate(-45deg);
   transform:rotate(-45deg);
 }
-
 /** 底部栏 */
 .g-bottom {
   position: absolute;

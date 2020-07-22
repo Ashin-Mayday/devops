@@ -3,35 +3,22 @@
     <!-- 导航栏 -->
     <div class="g-nav">
       <div class="bar">
-        <ul>
-          <li>
-            <a href="https://yunxin.163.com" target="_blank" class="logo">
-              <img :src="logo"/>
-            </a>
-          </li>
-          <li><a>开发者工具箱</a></li>
-          <li><a class="a" @click="handleLinkview()">常用链接</a></li>
-          <!-- 20200708新增-->
-          <li><a class="a" @click="handleExp()">经验分享</a></li>
-          <li>
-            <a href="https://faq.yunxin.163.com/kb/main/#/" target="_blank">知识库</a>
-          </li>
-          <li><a class="a" @click="handleManager()">管理后台</a></li>
-        </ul>
+        <div>
+          <div id="homeClickDiv" @click="homeUrl()"></div>
+          <div id="commClickDiv" @click="commUrl()"></div>
+          <a href="https://yunxin.163.com" target="_blank" class="logo">
+            <img :src="logo"/>
+          </a>
+        </div>
+        <div><a class="a-link" @click="handleLinkview()">常用链接</a></div>
+        <div><a class="a-link" @click="handleExp()">经验分享</a></div>
+        <div><a class="a-link" href="https://faq.yunxin.163.com/kb/main/#/" target="_blank">知识库</a></div>
+        <div v-if="auth"><a class="a-link" @click="handleManager()">管理后台</a></div>
       </div>
       <div class="g-info" v-if="auth">
           <div>欢迎您：<span class="g-admin">管理员</span><span class="logout" @click="logout()">登出</span></div>
       </div>
     </div>
-    <!-- 20200707去掉底-->
-    <!-- <div class="g-bottom">
-      <div class="left bottom">
-        <img :src="neteaseLogo"/>
-      </div>
-      <div class="right bottom">
-        <img :src="yxLogo"/>
-      </div>
-    </div> -->
   </div>
 </template>
 <script>
@@ -40,12 +27,18 @@ export default {
   name: 'HeadFoot',
   data () {
     return {
-      logo: require('../assets/image/logo.png'),
+      logo: require('../assets/image/logo_new.png'),
       name: '',
       auth: false // 权限
     }
   },
   methods: {
+    homeUrl () {
+      window.open('https://yunxin.163.com/', "_blank")
+    },
+    commUrl () {
+      this.$router.push('../linkview')
+    },
     logout () {
       this.$confirm('是否需要退出登录?', '提示', {
         confirmButtonText: '确定',
@@ -93,6 +86,19 @@ export default {
 }
 </script>
 <style lang="css" scoped>
+#homeClickDiv {
+  height: 66px;
+  width: 105px;
+  position: absolute;
+  cursor: pointer
+}
+#commClickDiv {
+  height: 66px;
+  width: 105px;
+  position: absolute;
+  margin-left: 106px;
+  cursor: pointer
+}
 /** 导航栏 */
 .g-nav {
   color: #fff;
@@ -102,26 +108,35 @@ export default {
   background: rgba(28, 43, 65, 1);
   z-index: 100;
   width: 100%;
-  display: fixed;
   min-width: 1000px;
 }
 /** 内置标签栏 */
 .bar {
   min-width: 800px;
-  margin-left: 7%;
+  width: 80%;
+  margin: 0 auto;
+  line-height: 60px;
+  display: flex;
+  align-items: center;
 }
-/** 取消ul的标签及横向排列 */
-ul {
-  list-style: none;
-  margin: 0;
+.bar > div {
+  margin-right:50px;
+  font-size: 20px;
 }
-li {
-  display: inline;
-  margin-left: 41px;
+.bar > div:not(:first-child) {
+  font-size: 18px;
+  margin-right: 50px;
+}
+.a-link {
+  cursor: pointer;
+}
+.a-link:hover {
+  color: #38A5EE;
 }
 /** 导航栏logo图 */
-.logo > img{
-  height: 30px;
+.logo > img {
+  height: 26px;
+  margin-bottom: 3%;
 }
 /** 针对a标签取消限制 */
 a:link {
@@ -145,7 +160,7 @@ a:focus {
 .logout:hover {
   cursor: pointer;
 }
-.a {
+.a-link {
   cursor: pointer;
 }
 </style>

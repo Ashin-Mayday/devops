@@ -3,8 +3,10 @@
     resize: none;
     width: 80%;
     margin: 0 auto;
-    padding: 0;
+    padding: 5px;
+    padding: 5px;
     height: 60px;
+    font-size: 12px;
 }
 .el-textarea .el-input__count {
   bottom: 5px;

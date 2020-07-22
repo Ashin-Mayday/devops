@@ -3,11 +3,12 @@
   margin: 0 auto;
   margin-top: 0.8rem;
   margin-bottom: 2rem;
-  width: 80%;
+  /* width: 80%; */
   height: 100%;
 	background-color: var(--ck-sample-color-white);
   background-color: #fff;
   font-size: 16px;
+  line-height: 1.6em;
 }
 /* 内容 */
 .ck-content > p {

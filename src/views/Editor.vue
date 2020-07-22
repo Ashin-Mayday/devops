@@ -241,7 +241,6 @@ export default {
           if (this.tagNum) {
             postTagArr.push(this.tagNum)
           }
-          // console.log(postTagArr)
           if (param === 'insert') {
             this.publish(postTagArr)
           }
@@ -328,7 +327,7 @@ input::-webkit-input-placeholder {
 }
 </style>
 <style>
-.ck.ck-toolbar{
+.ck.ck-toolbar {
   position: sticky;
   float: inherit;
   top: 0px;

@@ -121,7 +121,6 @@ export default {
   methods: {
     onReady (editor) {
       editor.isReadOnly = true
-    // Insert the toolbar before the editable area.
     },
     // 前往经验分享
     goExper () {
@@ -246,7 +245,7 @@ export default {
 }
 </script>
 <style lang="css" scoped>
-.svg-icon_home:hover{
+.svg-icon_home:hover {
   cursor: pointer;
 }
 .s-content {
@@ -387,5 +386,4 @@ a:focus {
 .ck.ck-editor__editable.ck-read-only .ck-widget.ck-widget_with-selection-handle .ck-widget__selection-handle, .ck.ck-editor__editable.ck-read-only .ck-widget.ck-widget_with-selection-handle .ck-widget__selection-handle:hover{
   visibility: hidden;
 }
-
 </style>

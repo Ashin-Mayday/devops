@@ -3,17 +3,16 @@
     <div class="g-nav">
       <div class="bar">
         <div>
-          <div id="homeClickDiv" style="height: 66px;width: 105px;position: absolute;cursor: pointer" onclick="window.open('https://yunxin.163.com/')"></div>
-          <div id="commClickDiv" style="height: 66px;width: 105px;position: absolute;margin-left: 106px;cursor: pointer" onclick="window.location.href = '../linkview#/linkview'"></div>
+          <div id="homeClickDiv" @click="homeUrl()"></div>
+          <div id="commClickDiv" @click="commUrl()"></div>
           <a href="https://yunxin.163.com" target="_blank" class="logo">
             <img :src="logo"/>
           </a>
         </div>
-        <!-- <div><a>开发者工具箱</a></div> -->
-        <div><a class="a" @click="handleLinkview()">常用链接</a></div>
-        <div><a class="a" @click="handleExp()">经验分享</a></div>
-        <div><a class="a" href="https://faq.yunxin.163.com/kb/main/#/" target="_blank">知识库</a></div>
-        <div><a class="a" @click="handleManager()">管理后台</a></div>
+        <div><a class="a-link" @click="handleLinkview()">常用链接</a></div>
+        <div><a class="a-link" @click="handleExp()">经验分享</a></div>
+        <div><a class="a-link" href="https://faq.yunxin.163.com/kb/main/#/" target="_blank">知识库</a></div>
+        <div v-if="auth"><a class="a-link" @click="handleManager()">管理后台</a></div>
         <div class="g-info" v-if="auth">
           <div>欢迎您：<span class="g-admin">管理员</span><span class="logout" @click="logout()">登出</span></div>
         </div>
@@ -25,53 +24,53 @@
       <!--  20200704改动 为了将中间4个导航栏居中，关注我们靠右。 新增 <div class="share-info">，将关注我们单独拎出来-->
       <div class="g-tools">
         <div class="tools-link">
-        <div class="tools" @click="openUrl(0)">
-          <div class="svg">
-            <svg xmlns="http://www.w3.org/2000/svg" class="svg-icon an-icon ant-read" viewBox="64 64 896 896" width="32" height="32" style="fill: rgb(255, 255, 255);"><path d="M928 161H699.2c-49.1 0-97.1 14.1-138.4 40.7L512 233l-48.8-31.3A255.2 255.2 0 0 0 324.8 161H96c-17.7 0-32 14.3-32 32v568c0 17.7 14.3 32 32 32h228.8c49.1 0 97.1 14.1 138.4 40.7l44.4 28.6c1.3.8 2.8 1.3 4.3 1.3s3-.4 4.3-1.3l44.4-28.6C602 807.1 650.1 793 699.2 793H928c17.7 0 32-14.3 32-32V193c0-17.7-14.3-32-32-32zM324.8 721H136V233h188.8c35.4 0 69.8 10.1 99.5 29.2l48.8 31.3 6.9 4.5v462c-47.6-25.6-100.8-39-155.2-39zm563.2 0H699.2c-54.4 0-107.6 13.4-155.2 39V298l6.9-4.5 48.8-31.3c29.7-19.1 64.1-29.2 99.5-29.2H888v488zM396.9 361H211.1c-3.9 0-7.1 3.4-7.1 7.5v45c0 4.1 3.2 7.5 7.1 7.5h185.7c3.9 0 7.1-3.4 7.1-7.5v-45c.1-4.1-3.1-7.5-7-7.5zm223.1 7.5v45c0 4.1 3.2 7.5 7.1 7.5h185.7c3.9 0 7.1-3.4 7.1-7.5v-45c0-4.1-3.2-7.5-7.1-7.5H627.1c-3.9 0-7.1 3.4-7.1 7.5zM396.9 501H211.1c-3.9 0-7.1 3.4-7.1 7.5v45c0 4.1 3.2 7.5 7.1 7.5h185.7c3.9 0 7.1-3.4 7.1-7.5v-45c.1-4.1-3.1-7.5-7-7.5zm416 0H627.1c-3.9 0-7.1 3.4-7.1 7.5v45c0 4.1 3.2 7.5 7.1 7.5h185.7c3.9 0 7.1-3.4 7.1-7.5v-45c.1-4.1-3.1-7.5-7-7.5z"></path>
-            </svg>
-          </div>
-          <div class="desc">
-            <div>开发者宝典</div>
-            <div>一天快速接入SDK</div>
-          </div>
-        </div>
-        <div class="tools" @click="openUrl(1)">
-          <div class="svg">
-            <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" class="svg-icon svg-md-weekend" width="32" height="32" viewBox="0 0 24 24" style="fill: rgb(255, 255, 255);"><path d="M21 10c-1.1 0-2 .9-2 2v3H5v-3c0-1.1-.9-2-2-2s-2 .9-2 2v5c0 1.1.9 2 2 2h18c1.1 0 2-.9 2-2v-5c0-1.1-.9-2-2-2zm-3-5H6c-1.1 0-2 .9-2 2v2.15c1.16.41 2 1.51 2 2.82V14h12v-2.03c0-1.3.84-2.4 2-2.82V7c0-1.1-.9-2-2-2z"></path>
-            </svg>
-          </div>
-          <div class="desc">
-            <div>近期沙龙活动</div>
-            <div>网易大咖面对面聊5G</div>
-          </div>
-        </div>
-        <div class="tools" @click="openUrl(2)">
-          <div class="svg">
-            <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" class="svg-icon svg-md-public" width="32" height="32" viewBox="0 0 24 24" style="fill: rgb(255, 255, 255);"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 17.93c-3.95-.49-7-3.85-7-7.93 0-.62.08-1.21.21-1.79L9 15v1c0 1.1.9 2 2 2v1.93zm6.9-2.54c-.26-.81-1-1.39-1.9-1.39h-1v-3c0-.55-.45-1-1-1H8v-2h2c.55 0 1-.45 1-1V7h2c1.1 0 2-.9 2-2v-.41c2.93 1.19 5 4.06 5 7.41 0 2.08-.8 3.97-2.1 5.39z"></path>
-            </svg>
-          </div>
-          <div class="desc">
-            <div>好友推荐计划</div>
-            <div>高额返利任性聊</div>
-          </div>
-        </div>
-        <div class="tools" @click="openUrl(3)">
-          <div class="svg">
-            <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" class="svg-icon fa-svg-icon svg-fa-handshake" width="32" height="32" viewBox="0 0 640 512" style="fill: rgb(255, 255, 255);"><path d="M519.2 127.9l-47.6-47.6A56.252 56.252 0 0 0 432 64H205.2c-14.8 0-29.1 5.9-39.6 16.3L118 127.9H0v255.7h64c17.6 0 31.8-14.2 31.9-31.7h9.1l84.6 76.4c30.9 25.1 73.8 25.7 105.6 3.8 12.5 10.8 26 15.9 41.1 15.9 18.2 0 35.3-7.4 48.8-24 22.1 8.7 48.2 2.6 64-16.8l26.2-32.3c5.6-6.9 9.1-14.8 10.9-23h57.9c.1 17.5 14.4 31.7 31.9 31.7h64V127.9H519.2zM48 351.6c-8.8 0-16-7.2-16-16s7.2-16 16-16 16 7.2 16 16c0 8.9-7.2 16-16 16zm390-6.9l-26.1 32.2c-2.8 3.4-7.8 4-11.3 1.2l-23.9-19.4-30 36.5c-6 7.3-15 4.8-18 2.4l-36.8-31.5-15.6 19.2c-13.9 17.1-39.2 19.7-55.3 6.6l-97.3-88H96V175.8h41.9l61.7-61.6c2-.8 3.7-1.5 5.7-2.3H262l-38.7 35.5c-29.4 26.9-31.1 72.3-4.4 101.3 14.8 16.2 61.2 41.2 101.5 4.4l8.2-7.5 108.2 87.8c3.4 2.8 3.9 7.9 1.2 11.3zm106-40.8h-69.2c-2.3-2.8-4.9-5.4-7.7-7.7l-102.7-83.4 12.5-11.4c6.5-6 7-16.1 1-22.6L367 167.1c-6-6.5-16.1-6.9-22.6-1l-55.2 50.6c-9.5 8.7-25.7 9.4-34.6 0-9.3-9.9-8.5-25.1 1.2-33.9l65.6-60.1c7.4-6.8 17-10.5 27-10.5l83.7-.2c2.1 0 4.1.8 5.5 2.3l61.7 61.6H544v128zm48 47.7c-8.8 0-16-7.2-16-16s7.2-16 16-16 16 7.2 16 16c0 8.9-7.2 16-16 16z"></path>
-            </svg>
-          </div>
-          <div class="desc">
-            <div>合作共创</div>
-            <div>加入云信合作伙伴计划</div>
-          </div>
-          </div>
-        </div>
-        <div class="share-info">
-          <div class="tip">关注我们：</div>
-          <div class="svg">
-            <div class="imageFollow" @mouseenter="handleImage('wechatIf', true)" @mouseleave="handleImage('wechatIf', false)">
-              <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" class="svg-icon fa-svg-icon svg-fa-weixin" width="22" height="22" viewBox="0 0 576 512" style="fill: rgb(255, 255, 255);"><path d="M385.2 167.6c6.4 0 12.6.3 18.8 1.1C387.4 90.3 303.3 32 207.7 32 100.5 32 13 104.8 13 197.4c0 53.4 29.3 97.5 77.9 131.6l-19.3 58.6 68-34.1c24.4 4.8 43.8 9.7 68.2 9.7 6.2 0 12.1-.3 18.3-.8-4-12.9-6.2-26.6-6.2-40.8-.1-84.9 72.9-154 165.3-154zm-104.5-52.9c14.5 0 24.2 9.7 24.2 24.4 0 14.5-9.7 24.2-24.2 24.2-14.8 0-29.3-9.7-29.3-24.2.1-14.7 14.6-24.4 29.3-24.4zm-136.4 48.6c-14.5 0-29.3-9.7-29.3-24.2 0-14.8 14.8-24.4 29.3-24.4 14.8 0 24.4 9.7 24.4 24.4 0 14.6-9.6 24.2-24.4 24.2zM563 319.4c0-77.9-77.9-141.3-165.4-141.3-92.7 0-165.4 63.4-165.4 141.3S305 460.7 397.6 460.7c19.3 0 38.9-5.1 58.6-9.9l53.4 29.3-14.8-48.6C534 402.1 563 363.2 563 319.4zm-219.1-24.5c-9.7 0-19.3-9.7-19.3-19.6 0-9.7 9.7-19.3 19.3-19.3 14.8 0 24.4 9.7 24.4 19.3 0 10-9.7 19.6-24.4 19.6zm107.1 0c-9.7 0-19.3-9.7-19.3-19.6 0-9.7 9.7-19.3 19.3-19.3 14.5 0 24.4 9.7 24.4 19.3.1 10-9.9 19.6-24.4 19.6z"></path>
+          <div class="tools" @click="openUrl(0)">
+            <div class="svg">
+              <svg xmlns="http://www.w3.org/2000/svg" class="svg-icon an-icon ant-read" viewBox="64 64 896 896" width="32" height="32" style="fill: rgb(255, 255, 255);"><path d="M928 161H699.2c-49.1 0-97.1 14.1-138.4 40.7L512 233l-48.8-31.3A255.2 255.2 0 0 0 324.8 161H96c-17.7 0-32 14.3-32 32v568c0 17.7 14.3 32 32 32h228.8c49.1 0 97.1 14.1 138.4 40.7l44.4 28.6c1.3.8 2.8 1.3 4.3 1.3s3-.4 4.3-1.3l44.4-28.6C602 807.1 650.1 793 699.2 793H928c17.7 0 32-14.3 32-32V193c0-17.7-14.3-32-32-32zM324.8 721H136V233h188.8c35.4 0 69.8 10.1 99.5 29.2l48.8 31.3 6.9 4.5v462c-47.6-25.6-100.8-39-155.2-39zm563.2 0H699.2c-54.4 0-107.6 13.4-155.2 39V298l6.9-4.5 48.8-31.3c29.7-19.1 64.1-29.2 99.5-29.2H888v488zM396.9 361H211.1c-3.9 0-7.1 3.4-7.1 7.5v45c0 4.1 3.2 7.5 7.1 7.5h185.7c3.9 0 7.1-3.4 7.1-7.5v-45c.1-4.1-3.1-7.5-7-7.5zm223.1 7.5v45c0 4.1 3.2 7.5 7.1 7.5h185.7c3.9 0 7.1-3.4 7.1-7.5v-45c0-4.1-3.2-7.5-7.1-7.5H627.1c-3.9 0-7.1 3.4-7.1 7.5zM396.9 501H211.1c-3.9 0-7.1 3.4-7.1 7.5v45c0 4.1 3.2 7.5 7.1 7.5h185.7c3.9 0 7.1-3.4 7.1-7.5v-45c.1-4.1-3.1-7.5-7-7.5zm416 0H627.1c-3.9 0-7.1 3.4-7.1 7.5v45c0 4.1 3.2 7.5 7.1 7.5h185.7c3.9 0 7.1-3.4 7.1-7.5v-45c.1-4.1-3.1-7.5-7-7.5z"></path>
               </svg>
+            </div>
+            <div class="desc">
+              <div>开发者宝典</div>
+              <div>一天快速接入SDK</div>
+            </div>
+          </div>
+          <div class="tools" @click="openUrl(1)">
+            <div class="svg">
+              <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" class="svg-icon svg-md-weekend" width="32" height="32" viewBox="0 0 24 24" style="fill: rgb(255, 255, 255);"><path d="M21 10c-1.1 0-2 .9-2 2v3H5v-3c0-1.1-.9-2-2-2s-2 .9-2 2v5c0 1.1.9 2 2 2h18c1.1 0 2-.9 2-2v-5c0-1.1-.9-2-2-2zm-3-5H6c-1.1 0-2 .9-2 2v2.15c1.16.41 2 1.51 2 2.82V14h12v-2.03c0-1.3.84-2.4 2-2.82V7c0-1.1-.9-2-2-2z"></path>
+              </svg>
+            </div>
+            <div class="desc">
+              <div>近期沙龙活动</div>
+              <div>网易大咖面对面聊5G</div>
+            </div>
+          </div>
+          <div class="tools" @click="openUrl(2)">
+            <div class="svg">
+              <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" class="svg-icon svg-md-public" width="32" height="32" viewBox="0 0 24 24" style="fill: rgb(255, 255, 255);"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 17.93c-3.95-.49-7-3.85-7-7.93 0-.62.08-1.21.21-1.79L9 15v1c0 1.1.9 2 2 2v1.93zm6.9-2.54c-.26-.81-1-1.39-1.9-1.39h-1v-3c0-.55-.45-1-1-1H8v-2h2c.55 0 1-.45 1-1V7h2c1.1 0 2-.9 2-2v-.41c2.93 1.19 5 4.06 5 7.41 0 2.08-.8 3.97-2.1 5.39z"></path>
+              </svg>
+            </div>
+            <div class="desc">
+              <div>好友推荐计划</div>
+              <div>高额返利任性聊</div>
+            </div>
+          </div>
+          <div class="tools" @click="openUrl(3)">
+            <div class="svg">
+              <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" class="svg-icon fa-svg-icon svg-fa-handshake" width="32" height="32" viewBox="0 0 640 512" style="fill: rgb(255, 255, 255);"><path d="M519.2 127.9l-47.6-47.6A56.252 56.252 0 0 0 432 64H205.2c-14.8 0-29.1 5.9-39.6 16.3L118 127.9H0v255.7h64c17.6 0 31.8-14.2 31.9-31.7h9.1l84.6 76.4c30.9 25.1 73.8 25.7 105.6 3.8 12.5 10.8 26 15.9 41.1 15.9 18.2 0 35.3-7.4 48.8-24 22.1 8.7 48.2 2.6 64-16.8l26.2-32.3c5.6-6.9 9.1-14.8 10.9-23h57.9c.1 17.5 14.4 31.7 31.9 31.7h64V127.9H519.2zM48 351.6c-8.8 0-16-7.2-16-16s7.2-16 16-16 16 7.2 16 16c0 8.9-7.2 16-16 16zm390-6.9l-26.1 32.2c-2.8 3.4-7.8 4-11.3 1.2l-23.9-19.4-30 36.5c-6 7.3-15 4.8-18 2.4l-36.8-31.5-15.6 19.2c-13.9 17.1-39.2 19.7-55.3 6.6l-97.3-88H96V175.8h41.9l61.7-61.6c2-.8 3.7-1.5 5.7-2.3H262l-38.7 35.5c-29.4 26.9-31.1 72.3-4.4 101.3 14.8 16.2 61.2 41.2 101.5 4.4l8.2-7.5 108.2 87.8c3.4 2.8 3.9 7.9 1.2 11.3zm106-40.8h-69.2c-2.3-2.8-4.9-5.4-7.7-7.7l-102.7-83.4 12.5-11.4c6.5-6 7-16.1 1-22.6L367 167.1c-6-6.5-16.1-6.9-22.6-1l-55.2 50.6c-9.5 8.7-25.7 9.4-34.6 0-9.3-9.9-8.5-25.1 1.2-33.9l65.6-60.1c7.4-6.8 17-10.5 27-10.5l83.7-.2c2.1 0 4.1.8 5.5 2.3l61.7 61.6H544v128zm48 47.7c-8.8 0-16-7.2-16-16s7.2-16 16-16 16 7.2 16 16c0 8.9-7.2 16-16 16z"></path>
+              </svg>
+            </div>
+            <div class="desc">
+              <div>合作共创</div>
+              <div>加入云信合作伙伴计划</div>
+            </div>
+            </div>
+          </div>
+          <div class="share-info">
+            <div class="tip">关注我们：</div>
+            <div class="svg">
+              <div class="imageFollow" @mouseenter="handleImage('wechatIf', true)" @mouseleave="handleImage('wechatIf', false)">
+                <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" class="svg-icon fa-svg-icon svg-fa-weixin" width="22" height="22" viewBox="0 0 576 512" style="fill: rgb(255, 255, 255);"><path d="M385.2 167.6c6.4 0 12.6.3 18.8 1.1C387.4 90.3 303.3 32 207.7 32 100.5 32 13 104.8 13 197.4c0 53.4 29.3 97.5 77.9 131.6l-19.3 58.6 68-34.1c24.4 4.8 43.8 9.7 68.2 9.7 6.2 0 12.1-.3 18.3-.8-4-12.9-6.2-26.6-6.2-40.8-.1-84.9 72.9-154 165.3-154zm-104.5-52.9c14.5 0 24.2 9.7 24.2 24.4 0 14.5-9.7 24.2-24.2 24.2-14.8 0-29.3-9.7-29.3-24.2.1-14.7 14.6-24.4 29.3-24.4zm-136.4 48.6c-14.5 0-29.3-9.7-29.3-24.2 0-14.8 14.8-24.4 29.3-24.4 14.8 0 24.4 9.7 24.4 24.4 0 14.6-9.6 24.2-24.4 24.2zM563 319.4c0-77.9-77.9-141.3-165.4-141.3-92.7 0-165.4 63.4-165.4 141.3S305 460.7 397.6 460.7c19.3 0 38.9-5.1 58.6-9.9l53.4 29.3-14.8-48.6C534 402.1 563 363.2 563 319.4zm-219.1-24.5c-9.7 0-19.3-9.7-19.3-19.6 0-9.7 9.7-19.3 19.3-19.3 14.8 0 24.4 9.7 24.4 19.3 0 10-9.7 19.6-24.4 19.6zm107.1 0c-9.7 0-19.3-9.7-19.3-19.6 0-9.7 9.7-19.3 19.3-19.3 14.5 0 24.4 9.7 24.4 19.3.1 10-9.9 19.6-24.4 19.6z"></path>
+                </svg>
               <img class="svg-image" v-if="wechatIf" :src="wechat"/>
             </div>
             <div class="imageFollow" @mouseenter="handleImage('weiboIf', true)" @mouseleave="handleImage('weiboIf', false)">
@@ -119,6 +118,12 @@ export default {
     }
   },
   methods: {
+    homeUrl () {
+      window.open('https://yunxin.163.com/', "_blank")
+    },
+    commUrl () {
+      this.$router.push('../linkview')
+    },
     logout () {
       this.$confirm('是否需要退出登录?', '提示', {
         confirmButtonText: '确定',
@@ -182,6 +187,19 @@ export default {
 }
 </script>
 <style lang="css" scoped>
+#homeClickDiv {
+  height: 66px;
+  width: 105px;
+  position: absolute;
+  cursor: pointer
+}
+#commClickDiv {
+  height: 66px;
+  width: 105px;
+  position: absolute;
+  margin-left: 106px;
+  cursor: pointer
+}
 /** 导航栏 */
 .g-nav {
   width: 100%;
@@ -297,7 +315,7 @@ a:focus {
   font-size: 14px;
   line-height: 22px;
   height: 30%;
-  margin-left: 85%;
+  right: 40px;
 }
 .tip {
   display: inline-block;
@@ -323,11 +341,11 @@ a:focus {
   box-shadow: 0 0 5px hsla( 0, 0%, 0%, .1 );
   margin-top: 10px;
 }
-.a {
+.a-link {
   cursor: pointer;
 }
-.a:hover {
-    color: #38A5EE;
+.a-link:hover {
+  color: #38A5EE;
 }
 /** 登录信息 */
 .g-info {
