@@ -30,7 +30,7 @@
          <div class="m-content">
             <div class="g-table">
               <el-table :data="articleOptions.slice((currentPage - 1) * pagesize,currentPage * pagesize)" height="100%" @row-click="openArticle">
-                <el-table-column prop="title" label="主题" width="180" class-name="article-manage-title"></el-table-column>
+                <el-table-column prop="title" label="主题" width="250" class-name="article-manage-title"></el-table-column>
                 <el-table-column label="标签" width="240">
                   <template slot-scope="scope">
                     <div v-for="(tagItem,index) in scope.row.postTag.split(',')" :key="index" class="tagDiv">
@@ -50,12 +50,12 @@
                     </div>
                   </template>
                 </el-table-column>
-                <el-table-column label="分类" width="160">
+                <el-table-column label="分类" width="120">
                   <template slot-scope="scope">
                     <div>{{ typeOptions[scope.row.postType - 1].label }}</div>
                   </template>
                 </el-table-column>
-                <el-table-column prop="visitNum" label="访问" width="100"></el-table-column>
+                <el-table-column prop="visitNum" label="访问" width="80"></el-table-column>
                 <el-table-column prop="updateTime" label="更新时间" width="240"></el-table-column>
               </el-table>
               <div class="block">
@@ -433,24 +433,21 @@ a:focus {
   word-break: break-all;
 }
 .col-title-style{
-    /*font-weight: bold;*/
-    color: #1c2b41;
-    font-size: 15px;
-  }
-
-  .col-title-style:hover{
-    color: #38A5EE;
-    cursor: pointer;
-  }
-
-  .el-input__inner{
-    line-height: 30px;
-    height: 30px;
-  }
-
-  .el-input__icon{
-    line-height:30px
-  }
+  /*font-weight: bold;*/
+  color: #1c2b41;
+  font-size: 15px;
+}
+.col-title-style:hover{
+  color: #38A5EE;
+  cursor: pointer;
+}
+.el-input__inner{
+  line-height: 30px;
+   height: 30px;
+}
+.el-input__icon{
+  line-height:30px
+}
 </style>
 <style>
 .article-manage-title:hover {
