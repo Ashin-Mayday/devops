@@ -16,7 +16,9 @@
         <span>登录</span>
       </div>
     </div>
-    <img class="s-bg" :src="background"/>
+    <div class="s-bg">
+      <img :src="background"/>
+    </div>
     <div class="m-form">
       <!-- 输入账号块 -->
       <div class="m-form-info">
@@ -197,7 +199,7 @@ a:focus {
   color: rgb(200, 195, 195);
 }
 /** 使用绝对定位定位背景图片 */
-.s-bg {
+.s-bg > img {
   display: inline-block;
   width: 100%;
   height: 60%;

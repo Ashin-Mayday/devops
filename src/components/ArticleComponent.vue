@@ -283,7 +283,6 @@ export default {
   margin: 0 auto;
   line-height: 40px;
   justify-content: center;
-  min-width: 1000px;
   padding: 10px 10px;
   align-items: center;
 }

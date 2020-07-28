@@ -152,12 +152,12 @@ export default {
 <style lang="css" scoped>
 .g-content {
   margin-left: 40px;
+  width: 1000px;
 }
 /** 标签咧  */
 .m-tag {
   font-size: 16px;
-  padding: 10px 10px;
-  min-width: 600px;
+  padding: 14.5px 10px;
   width: 100%;
 }
 /** 新增按钮 */
@@ -168,6 +168,7 @@ export default {
   background: #1c2b41;
   color: #fff;
   width: 120px;
+  font-weight: bold;
   line-height: 30px;
 }
 .increase:hover {
